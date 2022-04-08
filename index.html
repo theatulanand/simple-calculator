@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        * {
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #container {
+            width: 300px;
+            margin: auto;
+            height: 330px;
+            padding: 50px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+
+        #box {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            width: 300px;
+            padding: auto;
+            gap: 7px;
+            /* border: 2px solid green */
+        }
+
+        button {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 280px;
+            /* margin: auto; */
+            border: none;
+            text-align: right;
+            margin-bottom: 15px;
+            font-size: 30px;
+            /* margin-left: 32px; */
+            box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+        }
+
+        button {
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .operator {
+            background: #000;
+            color: white;
+        }
+
+        #clear {
+            background: red;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            font-family: 'Times New Roman', Times, serif;
+            color: teal;
+            margin-top: 50px;
+        }
+
+        button:active {
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Calculator</h1>
+    <div id="container">
+        <input id="input" style="display: block;" />
+        <div id="box">
+            <button class="number" onclick="concat(1)">1</button>
+            <button class="number" id="2" onclick="concat(2)">2</button>
+            <button class="number" onclick="concat(3)">3</button>
+            <button class="operator" onclick="concat('+')">+</button>
+            <button class="number" onclick="concat(4)">4</button>
+            <button class="number" onclick="concat(5)">5</button>
+            <button class="number" onclick="concat(6)">6</button>
+            <button class="operator" onclick="concat('-')">-</button>
+            <button class="number" onclick="concat(7)">7</button>
+            <button class="number" onclick="concat(8)">8</button>
+            <button class="number" onclick="concat(9)">9</button>
+            <button class="operator" onclick="concat('*')">X</button>
+            <button id="clear" onclick="clr()">C</button>
+            <button class="number" onclick="concat(0)">0</button>
+            <button class="operator" onclick="result()">=</button>
+            <button class="operator" onclick="concat('/')">/</button>
+        </div>
+    </div>
+</body>
+<script>
+    var inputText = "";
+
+    var result;
+    showInput();
+
+    function concat(value) {
+        inputText = inputText + value;
+        showInput();
+    }
+
+    function showInput() {
+        document.getElementById("input").value = inputText;
+    }
+
+    function clr() {
+        inputText = "";
+        showInput();
+    }
+
+
+    function result() {
+
+        var arr = inputText.split("");
+
+        console.log(arr);
+
+        var number = [];
+
+        var operator = [];
+
+        var str = "";
+
+        for (var i = 0; i < arr.length; i++) {
+            if (Number(arr[i]) >= 0 && Number(arr[i]) <= 9) {
+                str = str + arr[i];
+            }
+
+            if (arr[i] == "+" || arr[i] == '-' || arr[i] == "*" || arr[i] == "/") {
+                number.push(str);
+                str = "";
+                operator.push(arr[i]);
+            }
+
+        }
+
+        number.push(str);
+
+        var result = Number(number[0]);
+
+        for (var i = 0; i < operator.length; i++) {
+            if (operator[i] == "+") {
+                result = result + Number(number[i + 1]);
+            } else if (operator[i] == "-") {
+                result = result - Number(number[i + 1]);
+            } else if (operator[i] == "*") {
+                result = result * Number(number[i + 1]);
+            }else{
+                result = result / Number(number[i + 1]);
+            }
+        }
+
+        inputText = result;
+
+        showInput();
+
+    }
+
+
+</script>
+
+</html>
