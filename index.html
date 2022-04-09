@@ -81,20 +81,20 @@
     <div id="container">
         <input id="input" style="display: block;" />
         <div id="box">
-            <button class="number" onclick="concat(1)">1</button>
+            <button class="number" onclick="concat('1')">1</button>
             <button class="number" id="2" onclick="concat(2)">2</button>
-            <button class="number" onclick="concat(3)">3</button>
+            <button class="number" onclick="concat('3')">3</button>
             <button class="operator" onclick="concat('+')">+</button>
-            <button class="number" onclick="concat(4)">4</button>
-            <button class="number" onclick="concat(5)">5</button>
-            <button class="number" onclick="concat(6)">6</button>
+            <button class="number" onclick="concat('4')">4</button>
+            <button class="number" onclick="concat('5')">5</button>
+            <button class="number" onclick="concat('6')">6</button>
             <button class="operator" onclick="concat('-')">-</button>
-            <button class="number" onclick="concat(7)">7</button>
-            <button class="number" onclick="concat(8)">8</button>
-            <button class="number" onclick="concat(9)">9</button>
+            <button class="number" onclick="concat('7')">7</button>
+            <button class="number" onclick="concat('8')">8</button>
+            <button class="number" onclick="concat('9')">9</button>
             <button class="operator" onclick="concat('*')">X</button>
             <button id="clear" onclick="clr()">C</button>
-            <button class="number" onclick="concat(0)">0</button>
+            <button class="number" onclick="concat('0')">0</button>
             <button class="operator" onclick="result()">=</button>
             <button class="operator" onclick="concat('/')">/</button>
         </div>
@@ -122,7 +122,7 @@
 
 
     function result() {
-
+        inputText = document.getElementById("input").value;
         var arr = inputText.split("");
 
         console.log(arr);
